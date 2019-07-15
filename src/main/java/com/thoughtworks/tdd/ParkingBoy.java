@@ -1,12 +1,12 @@
 package com.thoughtworks.tdd;
 
 public class ParkingBoy {
-    private static final String UNRECOGNIEZD_PARKING_TICKET = "Unrecognized parking ticket.";
-    private static final String NOT_ENOUGH_POSITION = "Not enough position.";
-    private static final String NOT_PROVIDE_TICKET = "Please provide your parking ticket.";
-    private ParkingLot parkingLotFirst;
-    private ParkingLot parkingLotSecond;
-    private String errorMessage;
+    protected static final String UNRECOGNIEZD_PARKING_TICKET = "Unrecognized parking ticket.";
+    protected static final String NOT_ENOUGH_POSITION = "Not enough position.";
+    protected static final String NOT_PROVIDE_TICKET = "Please provide your parking ticket.";
+    protected ParkingLot parkingLotFirst;
+    protected ParkingLot parkingLotSecond;
+    protected String errorMessage;
 
     public void setParkingLot(ParkingLot parkingLotFirst, ParkingLot parkingLotSecond) {
         this.parkingLotFirst = parkingLotFirst;
@@ -30,7 +30,7 @@ public class ParkingBoy {
         }
     }
 
-    private boolean isCarValid(Car car) {
+    protected boolean isCarValid(Car car) {
         return car == null || isCarParked(car);
     }
 
@@ -38,7 +38,7 @@ public class ParkingBoy {
         return parkingLotFirst.hasParkedCar(car) || parkingLotSecond.hasParkedCar(car);
     }
 
-    private boolean isParkingLotsFull() {
+    protected boolean isParkingLotsFull() {
         return parkingLotFirst.isCarFull() && parkingLotSecond.isCarFull();
     }
 
