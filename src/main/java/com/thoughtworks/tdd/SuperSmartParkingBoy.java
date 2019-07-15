@@ -11,11 +11,19 @@ public class SuperSmartParkingBoy extends ParkingBoy{
     }
 
     private void superSmartChooseParkingLotToPark(Car car, Ticket ticket) {
-        if (parkingLotFirst.isCarFull() || parkingLotFirst.getRestCapacity() * 1.0 / parkingLotFirst.getTotalCapacity() < parkingLotSecond.getRestCapacity() * 1.0 / parkingLotSecond.getTotalCapacity()) {
+        if (parkingLotFirst.isCarFull() || isParkingLotFirstSmallerThanSecond()) {
             parkingLotSecond.parkCar(car, ticket);
         } else {
             parkingLotFirst.parkCar(car, ticket);
         }
+    }
+
+    private boolean isParkingLotFirstSmallerThanSecond() {
+        return calculateParkingLotPositionRate(parkingLotFirst) < calculateParkingLotPositionRate(parkingLotSecond);
+    }
+
+    private double calculateParkingLotPositionRate(ParkingLot parkingLotFirst) {
+        return parkingLotFirst.getRestCapacity() * 1.0 / parkingLotFirst.getTotalCapacity();
     }
 
     public String getErrorMessage() {
@@ -23,6 +31,6 @@ public class SuperSmartParkingBoy extends ParkingBoy{
     }
 
     public String checkTwoLotPositionRate() {
-        return "first: "+ parkingLotFirst.getRestCapacity() * 1.0 / parkingLotFirst.getTotalCapacity() +", second: " + parkingLotSecond.getRestCapacity() * 1.0 / parkingLotSecond.getTotalCapacity();
+        return "first: "+ calculateParkingLotPositionRate(parkingLotFirst) +", second: " + calculateParkingLotPositionRate(parkingLotSecond);
     }
 }
