@@ -1,6 +1,9 @@
 package com.thoughtworks.tdd;
 
 public class ParkingBoy {
+    private static final String UNRECOGNIEZD_PARKING_TICKET = "Unrecognized parking ticket.";
+    private static final String NOT_ENOUGH_POSITION = "Not enough position.";
+    private static final String NOT_PROVIDE_TICKET = "Please provide your parking ticket.";
     private ParkingLot parkingLotFirst;
     private ParkingLot parkingLotSecond;
     private String errorMessage;
@@ -12,7 +15,7 @@ public class ParkingBoy {
 
     public Ticket park(Car car, Ticket ticket) {
         if(isParkingLotsFull() || isCarValid(car)) {
-            this.errorMessage = "Not enough position.";
+            this.errorMessage = NOT_ENOUGH_POSITION;
             return null;
         }
         chooseParkingLotToPark(car, ticket);
@@ -51,10 +54,10 @@ public class ParkingBoy {
 
     private void checkTicketSetErrorMessage(Ticket ticket) {
         if(!isRecognizedTicket(ticket)) {
-            this.errorMessage = "Unrecognized parking ticket.";
+            this.errorMessage = UNRECOGNIEZD_PARKING_TICKET;
         }
         if(ticket == null) {
-            this.errorMessage = "Please provide your parking ticket.";
+            this.errorMessage = NOT_PROVIDE_TICKET;
         }
     }
 
