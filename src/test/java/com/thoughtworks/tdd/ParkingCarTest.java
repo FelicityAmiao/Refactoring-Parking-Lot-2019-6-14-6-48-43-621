@@ -133,7 +133,7 @@ public class ParkingCarTest {
 
         assertNull(fetchCar);
         assertNull(fetchCar2);
-        assertEquals("Unrecognized parking ticket.", errorMessage);
+        assertEquals(ParkingBoy.UNRECOGNIEZD_PARKING_TICKET, errorMessage);
     }
 
     @Test
@@ -148,7 +148,7 @@ public class ParkingCarTest {
         String errorMessage = parkingBoy.getErrorMessage();
 
         assertNull(fetchCar1);
-        assertEquals("Please provide your parking ticket.", errorMessage);
+        assertEquals(ParkingBoy.NOT_PROVIDE_TICKET, errorMessage);
     }
 
     @Test
@@ -163,7 +163,7 @@ public class ParkingCarTest {
         parkingBoy.park(new Car(), new Ticket());
         String errorMessage = parkingBoy.getErrorMessage();
 
-        assertEquals("Not enough position.", errorMessage);
+        assertEquals(ParkingBoy.NOT_ENOUGH_POSITION, errorMessage);
     }
 
     @Test
@@ -258,7 +258,7 @@ public class ParkingCarTest {
 
         String errorMessage = serviceManager.getErrorMsgFromParkingBoy();
 
-        assertEquals("Please provide your parking ticket.", errorMessage);
+        assertEquals(ParkingBoy.NOT_PROVIDE_TICKET, errorMessage);
     }
 
 }
